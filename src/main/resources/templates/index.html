@@ -3,7 +3,7 @@
       xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
-    <title>ENDE - Empresa Nacional de Distribuição de Electricidade - E.P.</title>
+        <title>ENDE - Empresa Nacional de Distribuição de Electricidade - E.P.</title>
 
     <link th:href="@{/images/ende.png}" rel="icon"/>
 
@@ -753,7 +753,7 @@
                 </h4>
                 <div class="modal-body">
 
-                    <form class="form-group-lg " id="validar"  method="post" action="controller/controllerUsuario.php">
+                    <form class="form-group-lg " id="validar"  method="post" th:action="@{/dashboard}">
                         <ul class="list-unstyled">
                             <li class="form-group">
                                 <div class="input-group">

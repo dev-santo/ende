@@ -21,7 +21,7 @@ import java.util.List;
 @RequestMapping("/usuarios")
 public class UsuarioController {
 
-    private static final String USUARIOS = "page-profile";
+    private static final String CDT_USUARIOS = "cdtUsuario";
     private static final String VER_USUARIOS = "see-profile";
 
     @Autowired
@@ -30,7 +30,7 @@ public class UsuarioController {
 
     @RequestMapping
     public ModelAndView usuarios() {
-        ModelAndView mv = new ModelAndView(USUARIOS);
+        ModelAndView mv = new ModelAndView(CDT_USUARIOS);
         mv.addObject(new Usuario());
         return mv;
     }
@@ -68,7 +68,7 @@ public class UsuarioController {
 
     @RequestMapping("{codigo}")
     public ModelAndView edicao(@PathVariable("codigo") Usuario user) {
-        ModelAndView mv = new ModelAndView(USUARIOS);
+        ModelAndView mv = new ModelAndView(CDT_USUARIOS);
         mv.addObject(user);
         return mv;
     }
@@ -88,6 +88,11 @@ public class UsuarioController {
             repository.deleteById(codigo);
         attributes.addFlashAttribute("mensagem", "Usuário excluido com sucesso!");
         return "redirect:/usuarios";
+    }
+
+    @RequestMapping("/cadastrar")
+    public ModelAndView ver() {
+        return new ModelAndView(CDT_USUARIOS);
     }
 
 }

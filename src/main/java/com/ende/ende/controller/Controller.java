@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class Controller {
 
     private static final String INDEX = "index";
-    private static final String DASHBOARD_INDEX = "dashboardIndex";
+    private static final String DASHBOARD = "dashboard";
 
     @RequestMapping()
     public ModelAndView index(){
@@ -22,9 +22,9 @@ public class Controller {
         return new ModelAndView(INDEX);
     }
 
-    @RequestMapping("/dashboardIndex")
+    @RequestMapping("/dashboard")
     public ModelAndView dashboardIndex(){
-        return new ModelAndView(DASHBOARD_INDEX);
+        return new ModelAndView(DASHBOARD);
     }
 
 }
