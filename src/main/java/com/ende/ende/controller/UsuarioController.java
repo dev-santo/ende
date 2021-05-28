@@ -22,7 +22,7 @@ import java.util.List;
 public class UsuarioController {
 
     private static final String CDT_USUARIOS = "cdtUsuario";
-    private static final String VER_USUARIOS = "see-profile";
+    private static final String VER_USUARIOS = "verUsuario";
 
     @Autowired
     private UsuarioRepository repository;
@@ -58,8 +58,8 @@ public class UsuarioController {
     public String novo(Usuario user, RedirectAttributes attributes) {
         try {
             repository.save(user);
-            attributes.addFlashAttribute("mensagem", "Cliente salvo com sucesso!");
-            return "redirect:/usuarios";
+            attributes.addFlashAttribute("mensagem", "Usuário salvo com sucesso!");
+            return "redirect:/usuarios/cadastrar";
         } catch (Exception e) {
             e.printStackTrace();
             return "redirect:/usuarios";
@@ -91,8 +91,10 @@ public class UsuarioController {
     }
 
     @RequestMapping("/cadastrar")
-    public ModelAndView ver() {
-        return new ModelAndView(CDT_USUARIOS);
+    public ModelAndView novo() {
+        ModelAndView mv = new ModelAndView(CDT_USUARIOS);
+        mv.addObject(new Usuario());
+        return mv;
     }
 
 }

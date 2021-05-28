@@ -3,7 +3,7 @@ package com.ende.ende.model;
 public enum PerfilUsuario {
 
     ADMINISTRADOR("Administrador"),
-    ATENDENTE("Atendente");
+    CALLCENTER("Call Center");
 
     private String descricao;
 

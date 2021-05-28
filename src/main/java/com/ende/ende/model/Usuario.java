@@ -20,6 +20,8 @@ public class Usuario {
 
     private String endereco;
 
+    private String email;
+
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     @Temporal(TemporalType.DATE)
     private Date dataNascimento;
@@ -103,5 +105,13 @@ public class Usuario {
 
     public void setEndereco(String endereco) {
         this.endereco = endereco;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

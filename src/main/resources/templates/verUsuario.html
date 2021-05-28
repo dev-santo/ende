@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html layout:decorator="LayoutPadrao"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+
+    <title>
+        ENDE - Empresa Nacional de Distribuição de Electricidade - E.P.
+    </title>
+
+</head>
+
+<section layout:fragment="conteudo">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12" style="margin-top: 60px">
+                <div class="card">
+                    <div class="card-header card-header-rose card-header-icon">
+                        <div class="card-icon"><i class="material-icons">assignment</i></div>
+                        <h4 class="card-title">Usuários</h4></div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th class="text-center">ID</th>
+                                    <th>Nome</th>
+                                    <th>Gênero</th>
+                                    <th>Email</th>
+                                    <th>Endereço</th>
+                                    <th>Perfil</th>
+                                    <th>Senha</th>
+                                    <th>Telefone</th>
+                                    <th>Data de Nascimento</th>
+                                    <th class="text-right">Ações</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr class="ng-star-inserted" th:each="usuario : ${usuarios}">
+                                    <td class="text-center" th:text="${usuario.codigo}"></td>
+                                    <td th:text="${usuario.nome}"></td>
+                                    <td th:text="${usuario.genero}"></td>
+                                    <td th:text="${usuario.email}"></td>
+                                    <td th:text="${usuario.endereco}"></td>
+                                    <td th:text="${usuario.perfil}"></td>
+                                    <td th:text="${usuario.senha}"></td>
+                                    <td th:text="${usuario.telefone}"></td>
+                                    <td th:text="${usuario.dataNascimento}"></td>
+                                    <td class="td-actions text-right">
+                                        <a class="mat-raised-button mat-button-base btn btn-success"
+                                                mat-raised-button=""
+                                                type="button"
+                                                th:href="@{/usuarios/{codigo}(codigo=${usuario.codigo})}"><span
+                                                class="mat-button-wrapper"><i class="material-icons">edit</i></span>
+                                            <div class="mat-ripple mat-button-ripple" matripple=""></div>
+                                            <div class="mat-button-focus-overlay"></div>
+                                        </a>
+                                        <a class="mat-raised-button mat-button-base btn btn-danger"
+                                                mat-raised-button=""
+                                                type="button"><span
+                                                class="mat-button-wrapper"
+                                                data-target="#modalExcluirUsuario"
+                                                th:attr="data-codigo=${usuario.codigo}, data-nome=${usuario.nome}"><i class="material-icons">close</i></span>
+                                            <div class="mat-ripple mat-button-ripple" matripple=""></div>
+                                            <div class="mat-button-focus-overlay"></div>
+                                        </a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div layout:include="ModalExcluirUsuario"></div>
+
+</section>
+</html>
