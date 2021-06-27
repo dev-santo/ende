@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html layout:decorator="LayoutPadrao"
-      xmlns="http://www.w3.org/1999/xhtml"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:th="https://www.thymeleaf.org">
 <head>
@@ -12,6 +11,9 @@
 </head>
 
 <section layout:fragment="conteudo">
+
+    <th:block th:replace="_modals :: modal('modalExcluirUsuario')">modal</th:block>
+
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-12" style="margin-top: 60px">
@@ -49,22 +51,28 @@
                                     <td th:text="${usuario.dataNascimento}"></td>
                                     <td class="td-actions text-right">
                                         <a class="mat-raised-button mat-button-base btn btn-success"
-                                                mat-raised-button=""
-                                                type="button"
-                                                th:href="@{/usuarios/{codigo}(codigo=${usuario.codigo})}"><span
+                                           mat-raised-button=""
+                                           th:href="@{/usuarios/{codigo}(codigo=${usuario.codigo})}"
+                                           type="button"><span
                                                 class="mat-button-wrapper"><i class="material-icons">edit</i></span>
                                             <div class="mat-ripple mat-button-ripple" matripple=""></div>
                                             <div class="mat-button-focus-overlay"></div>
                                         </a>
                                         <a class="mat-raised-button mat-button-base btn btn-danger"
-                                                mat-raised-button=""
-                                                type="button"><span
-                                                class="mat-button-wrapper"
-                                                data-target="#modalExcluirUsuario"
-                                                th:attr="data-codigo=${usuario.codigo}, data-nome=${usuario.nome}"><i class="material-icons">close</i></span>
-                                            <div class="mat-ripple mat-button-ripple" matripple=""></div>
+                                           data-toggle="modal"
+                                           data-target="#modalExcluirUsuario"
+                                           th:attr="data-codigo=${usuario.codigo}, data-nome=${usuario.nome}"
+                                           type="button">
+                                            <span class="mat-button-wrapper">
+                                            <i class="material-icons">close</i></span>
+                                            <div class="mat-ripple mat-button-ripple"></div>
                                             <div class="mat-button-focus-overlay"></div>
                                         </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="10" th:if="${#lists.isEmpty(usuarios)}">Nenhum
+                                        usuário foi encontrado!
                                     </td>
                                 </tr>
                                 </tbody>
@@ -75,8 +83,6 @@
             </div>
         </div>
     </div>
-
-    <div layout:include="ModalExcluirUsuario"></div>
 
 </section>
 </html>
