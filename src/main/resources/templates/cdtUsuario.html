@@ -20,6 +20,27 @@
     <!--  More information about jquery.validate here: http://jqueryvalidation.org/	 -->
     <script th:src="@{/assets/js/jquery.validate.min.js}"></script>
 
+    <style>
+        .div-select {
+            width:250px;
+            overflow:hidden;
+            margin-top:25px;
+        }
+        .div-select select {
+            background: url(http://www.webcis.com.br/images/imagens-noticias/select/ico-seta-select.gif) no-repeat #e91e63;  /* Imagem de fundo (Seta) */
+            background-position: 205px center;
+            width: 300px;
+            height:45px;
+            font-family:Arial, Helvetica, sans-serif;
+            font-size:16px;
+            padding:13px 20px 13px 12px;
+            color:#fff;
+            text-indent: 0.01px;
+            text-overflow: "";
+            select::-ms-expand {display: none;
+        }
+    </style>
+
 </head>
 
 <section layout:fragment="conteudo">
@@ -42,15 +63,15 @@
 
                                 <div class="wizard-header">
                                     <h3>
-                                        <b>CONSTRUA</b> SEU PERFIL <br>
+                                        <b>CONSTRUA SEU PERFIL <br>
                                     </h3>
                                 </div>
 
-                                <div class="wizard-navigation">
-                                    <ul>
+                                <div class="wizard-navigation" >
+                                    <ul style="height:40px;padding:10px;">
                                         <li><a data-toggle="tab" href="#about">Sobre</a></li>
-                                        <li><a data-toggle="tab" href="#address">Endereço</a></li>
-                                        <li><a data-toggle="tab" href="#account">Conta</a></li>
+                                        <li style="padding-left:100px;"><a data-toggle="tab" href="#address">Endereço</a></li>
+                                        <li style="padding-left:100px;"><a data-toggle="tab" href="#account">Conta</a></li>
                                     </ul>
 
                                 </div>
@@ -72,28 +93,26 @@
                                             </div>
                                             <div class="col-sm-6">
                                                 <div class="form-group">
+                                                    <i class="material-icons">person</i> <span>Nome Completo:</span> <input class="form-control" name="name" placeholder="Nome" type="text" th:field="*{nome}"></br>
+                                                    <i class="material-icons">email</i> <span>Email:</span><input class="form-control" name="email" placeholder="Email" type="email" th:field="*{email}">
 
-                                                    <input class="form-control" name="name"
-                                                           placeholder="Nome"
-                                                           type="text" th:field="*{nome}">
-                                                </div>
-                                                <div class="form-control">
-                                                    <label>Gênero</label>
-                                                    <div>
-                                                        <select th:field="*{genero}">
-                                                            <option th:each="generos : ${todosGeneros}"
-                                                                    th:text="${generos.descricao}"
-                                                                    th:value="${generos}"></option>
-                                                        </select>
+
+                                                    <div class="div-select">
+                                                        <i class="material-icons">folder</i><span>Gênero</span>
+                                                        <div>
+                                                            <select th:field="*{genero}">
+                                                                <option th:each="generos : ${todosGeneros}"
+                                                                        th:text="${generos.descricao}"
+                                                                        th:value="${generos}"></option>
+                                                            </select>
+                                                        </div>
                                                     </div>
+
+
                                                 </div>
-                                            </div>
-                                            <div class="col-sm-10 col-sm-offset-1">
-                                                <div class="form-group">
-                                                    <!--                                                <label>Email <small>(required)</small></label>-->
-                                                    <input class="form-control" name="email" placeholder="Email"
-                                                           type="email" th:field="*{email}">
-                                                </div>
+
+
+
                                             </div>
                                         </div>
                                     </div>
@@ -104,16 +123,19 @@
                                             <!--                                            </div>-->
                                             <div class="col-sm-7 col-sm-offset-1">
                                                 <div class="form-group">
+                                                    <i class="material-icons">home</i><span> Endereço:</span>
                                                     <input class="form-control" placeholder="Endereço" type="text" th:field="*{endereco}">
                                                 </div>
                                             </div>
                                             <div class="col-sm-3">
                                                 <div class="form-group">
+                                                    <i class="material-icons">phone</i> <span>Telefone:</span>
                                                     <input class="form-control" placeholder="Telefone" type="text" th:field="*{telefone}">
                                                 </div>
                                             </div>
                                             <div class="col-sm-5 col-sm-offset-1">
                                                 <div class="form-group">
+                                                    <i class="material-icons">event</i> <span>Data de Nacimento:</span>
                                                     <input class="form-control" data-date-autoclose="true"
                                                            data-date-format="dd/mm/yyyy"
                                                            data-date-language="pt-BR"
@@ -134,16 +156,20 @@
                                         <!--                                                <h4 class="info-text"> Are you living in a nice area? </h4>-->
                                         <!--                                            </div>-->
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label" for="perfil">Perfil</label>
+
                                             <div class="col-sm-4">
-                                                <select class="form-control" th:field="*{perfil}">
+                                                <div class="div-select">
+                                                    <i class="material-icons">room</i><span>Perfil</span>
+                                                <select th:field="*{perfil}">
                                                     <option th:each="perfis : ${todosPerfis}"
                                                             th:text="${perfis.descricao}" th:value="${perfis}"></option>
                                                 </select>
                                             </div>
+                                            </div>
                                         </div>
                                         <div class="col-sm-5 col-sm-offset-1">
                                             <div class="form-group">
+                                                <i class="material-icons">done</i><span>Palavra Passe:</span>
                                                 <input class="form-control" placeholder="Senha" type="password"
                                                        th:field="*{senha}">
                                             </div>
